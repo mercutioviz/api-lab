@@ -27,7 +27,5 @@ foreach ( $item in $response.psobject.Properties.Name ) {
     }
 }
 
-
-
-$done = Logout-BarracudaWAF -device $dev_name -device_port $dev_port -authentication $auth
+Logout-BarracudaWAF -device $dev_name -device_port $dev_port -authentication $auth
 
