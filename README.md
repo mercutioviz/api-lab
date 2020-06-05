@@ -17,8 +17,11 @@ PS API module
 ## Reference Information
 The following are some references that I personally found helpful for various aspects of doing APIs and scripting
 * Install Windows Subsystem for Linux (WSL) - https://docs.microsoft.com/en-us/windows/wsl/install-win10
+
 `dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart`
+
 `dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart`
+
 (restart computer)
 
 * Install PowerShell 7 - https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell?view=powershell-7
