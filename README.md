@@ -28,8 +28,9 @@ In my personal opinion this is the ideal place to work because it permits you to
 ### Install WSL
 Full installation documentation can be found [here](https://docs.microsoft.com/en-us/windows/wsl/install-win10). For reference, here are the two commands I ran on my Windows 10 laptop to be ready for WSL:  
 `dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart`  
-`dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart`
-(Restart computer here)
+`dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart`  
+(Restart computer here)  
+
 Once this is done you can install a Linux version from the Microsoft Store. I have had good success with Ubuntu 20.04 LTS.
 
 ### Install Windows Terminal
