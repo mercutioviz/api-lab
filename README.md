@@ -29,3 +29,5 @@ The following are some references that I personally found helpful for various as
 
 * PowerShell Master Class series on YouTube - https://www.youtube.com/playlist?list=PLlVtbbG169nFq_hR7FcMYg32xsSAObuq8
 
+* Install Linux modules
+`sudo apt-get install jq`
