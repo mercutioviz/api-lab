@@ -47,10 +47,10 @@ One clue that line-endings are wrong is running a script and seeing an error tha
 
 ## JSON - the language of APIs
 Like it or not you will need to get accustomed to viewing, parsing, and occasionally crafting JSON data.
-The following resources may help when dealing with JSON:
-[Free Formatter - JSON](https://www.freeformatter.com/json-validator.html)
-[JSON Reference](https://www.json.org/json-en.html)
-[Gentle JSON Tutorial](https://restfulapi.net/introduction-to-json/)
+The following resources may help when dealing with JSON:  
+[Free Formatter - JSON](https://www.freeformatter.com/json-validator.html)  
+[JSON Reference](https://www.json.org/json-en.html)  
+[Gentle JSON Tutorial](https://restfulapi.net/introduction-to-json/)  
 
 Most API calls return JSON data in a raw format. This is difficult to read. Copy the raw JSON and paste into the Free Formatter mentioned above to get a view of the data that can easily be explored. Alternatively, capture the raw JSON and pipe it through the jq tool in bash. In PowerShell there is a cmdlet called ConvertFrom-JSON that takes a string of JSON data and converts it into a psobject that has an object for each field in the JSON string. In both cases this makes it easier to analyze a response to an API call.
 
