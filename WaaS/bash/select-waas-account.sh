@@ -8,4 +8,23 @@
 . ./waas-login.sh
 echo "${waastoken}"
 res=`./get-waas-accounts.sh`
-current_acccount_index=`echo ${res} | jq -r '.current_account_idx`
+#OIFS=$IFS
+#IFS=$'\n'
+num_accts=`echo ${res} | jq -r '.accounts | length'`
+
+if [[ ${num_accts} == 1 ]]
+then 
+    echo -n "Using the only account found: "
+    echo $res | jq -r '.accounts[].name'
+    echo
+    exit 0
+fi
+
+echo "Found ${num_accts} accounts"
+idx=`echo ${res} | jq -r '.current_account_idx'`
+echo "Current account index: $idx"
+
+#echo "DEBUG"
+#echo ${res} | jq -r '.current_account_idx'
+
+#IFS=$OIFS
