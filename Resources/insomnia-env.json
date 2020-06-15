@@ -1,0 +1,650 @@
+{
+    "_type": "export",
+    "__export_format": 4,
+    "__export_date": "2020-06-15T21:19:05.018Z",
+    "__export_source": "insomnia.desktop.app:v2020.2.2",
+    "resources": [
+      {
+        "_id": "req_aafa2a7c59f445a1a8c5024e0d5d0c74",
+        "authentication": {},
+        "body": {},
+        "created": 1591909586196,
+        "description": "",
+        "headers": [
+          {
+            "description": "",
+            "id": "pair_2d3242f916b14b7d88f35f1d7f18b10c",
+            "name": "X-API-Token",
+            "value": "{{ cgf_api_token  }}"
+          },
+          {
+            "description": "",
+            "id": "pair_148668a6d7b243328378aff27d8d2c42",
+            "name": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "isPrivate": false,
+        "metaSortKey": -1591909586196,
+        "method": "GET",
+        "modified": 1592255781876,
+        "name": "Box Status",
+        "parameters": [],
+        "parentId": "fld_e10fd70c80544deea2e1905642ebd09b",
+        "settingDisableRenderRequestBody": false,
+        "settingEncodeUrl": true,
+        "settingFollowRedirects": "global",
+        "settingRebuildPath": true,
+        "settingSendCookies": true,
+        "settingStoreCookies": true,
+        "url": "{{ cgf_url  }}control/v1/box?envelope=true",
+        "_type": "request"
+      },
+      {
+        "_id": "fld_e10fd70c80544deea2e1905642ebd09b",
+        "created": 1591832891516,
+        "description": "",
+        "environment": {},
+        "environmentPropertyOrder": null,
+        "metaSortKey": -1591832891516,
+        "modified": 1591832891516,
+        "name": "CGF",
+        "parentId": "wrk_e7f2fe9a20a64cbbb4112f4e9778e61e",
+        "_type": "request_group"
+      },
+      {
+        "_id": "wrk_e7f2fe9a20a64cbbb4112f4e9778e61e",
+        "created": 1573663883511,
+        "description": "",
+        "modified": 1573663883511,
+        "name": "Insomnia",
+        "parentId": null,
+        "scope": null,
+        "_type": "workspace"
+      },
+      {
+        "_id": "req_64ceff7ba94946b684592226c8ce5fe9",
+        "authentication": {},
+        "body": {},
+        "created": 1592005272263,
+        "description": "",
+        "headers": [
+          {
+            "description": "",
+            "id": "pair_2d3242f916b14b7d88f35f1d7f18b10c",
+            "name": "X-API-Token",
+            "value": "{{ cgf_api_token  }}"
+          },
+          {
+            "description": "",
+            "id": "pair_148668a6d7b243328378aff27d8d2c42",
+            "name": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "isPrivate": false,
+        "metaSortKey": -1591887444157.5,
+        "method": "GET",
+        "modified": 1592255764410,
+        "name": "Box Info",
+        "parameters": [],
+        "parentId": "fld_e10fd70c80544deea2e1905642ebd09b",
+        "settingDisableRenderRequestBody": false,
+        "settingEncodeUrl": true,
+        "settingFollowRedirects": "global",
+        "settingRebuildPath": true,
+        "settingSendCookies": true,
+        "settingStoreCookies": true,
+        "url": "{{ cgf_url  }}control/v1/box/info?envelope=true",
+        "_type": "request"
+      },
+      {
+        "_id": "req_8d06efbd64e347188da6beba69fe42db",
+        "authentication": {},
+        "body": {},
+        "created": 1592004850316,
+        "description": "",
+        "headers": [
+          {
+            "description": "",
+            "id": "pair_2d3242f916b14b7d88f35f1d7f18b10c",
+            "name": "X-API-Token",
+            "value": "{{ cgf_api_token  }}"
+          },
+          {
+            "description": "",
+            "id": "pair_148668a6d7b243328378aff27d8d2c42",
+            "name": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "isPrivate": false,
+        "metaSortKey": -1591865302119,
+        "method": "GET",
+        "modified": 1592255798520,
+        "name": "FW Rules",
+        "parameters": [],
+        "parentId": "fld_e10fd70c80544deea2e1905642ebd09b",
+        "settingDisableRenderRequestBody": false,
+        "settingEncodeUrl": true,
+        "settingFollowRedirects": "global",
+        "settingRebuildPath": true,
+        "settingSendCookies": true,
+        "settingStoreCookies": true,
+        "url": "{{ cgf_url  }}config/v1/forwarding-firewall/rules?expand=true&lock=false&envelope=true",
+        "_type": "request"
+      },
+      {
+        "_id": "req_98a8c39755f343a1bf1df84d2bbb8bfd",
+        "authentication": {},
+        "body": {},
+        "created": 1592005114090,
+        "description": "",
+        "headers": [
+          {
+            "description": "",
+            "id": "pair_2d3242f916b14b7d88f35f1d7f18b10c",
+            "name": "X-API-Token",
+            "value": "{{ cgf_api_token  }}"
+          },
+          {
+            "description": "",
+            "id": "pair_148668a6d7b243328378aff27d8d2c42",
+            "name": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "isPrivate": false,
+        "metaSortKey": -1591843160080.5,
+        "method": "GET",
+        "modified": 1592255812285,
+        "name": "Host FW Rules",
+        "parameters": [],
+        "parentId": "fld_e10fd70c80544deea2e1905642ebd09b",
+        "settingDisableRenderRequestBody": false,
+        "settingEncodeUrl": true,
+        "settingFollowRedirects": "global",
+        "settingRebuildPath": true,
+        "settingSendCookies": true,
+        "settingStoreCookies": true,
+        "url": "{{ cgf_url  }}config/v1/box/firewall/rules?expand=false&lock=false&envelope=true",
+        "_type": "request"
+      },
+      {
+        "_id": "req_ed099ac8a46f4b82a727b10538c29c51",
+        "authentication": {},
+        "body": {},
+        "created": 1583518304186,
+        "description": "",
+        "headers": [
+          {
+            "disabled": false,
+            "id": "pair_e78c78f77de24dbf8c789fff93ed0b51",
+            "name": "auth-api",
+            "value": "eyJleHBpcmF0aW9uIjogMTU5MTgyNjM0MiwgImFjY19pZCI6IDEwOTExODQ4LCAidXNlcl9pZCI6IDIzNjE1MzgxfQ==.2e4d57d625a8ef2cc6c6494e6536924e839fc937e6101b9bfebed91e3ee3e50a"
+          },
+          {
+            "id": "pair_393b1089880e4498af93e15965716353",
+            "name": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "isPrivate": false,
+        "metaSortKey": -1591821018042,
+        "method": "GET",
+        "modified": 1591907310597,
+        "name": "WaaS list accounts",
+        "parameters": [],
+        "parentId": "fld_0a3e4d20adac476ca10116341fdc92f7",
+        "settingDisableRenderRequestBody": false,
+        "settingEncodeUrl": true,
+        "settingFollowRedirects": "global",
+        "settingRebuildPath": true,
+        "settingSendCookies": true,
+        "settingStoreCookies": true,
+        "url": "{{ waas_url }}accounts",
+        "_type": "request"
+      },
+      {
+        "_id": "fld_0a3e4d20adac476ca10116341fdc92f7",
+        "created": 1591822667266,
+        "description": "",
+        "environment": {},
+        "environmentPropertyOrder": null,
+        "metaSortKey": -1591822667266,
+        "modified": 1591822667266,
+        "name": "WaaS",
+        "parentId": "wrk_e7f2fe9a20a64cbbb4112f4e9778e61e",
+        "_type": "request_group"
+      },
+      {
+        "_id": "req_d10675169e7d4d31910f3302d2a6979d",
+        "authentication": {},
+        "body": {},
+        "created": 1573669821797,
+        "description": "",
+        "headers": [
+          {
+            "disabled": false,
+            "id": "pair_e78c78f77de24dbf8c789fff93ed0b51",
+            "name": "auth-api",
+            "value": "eyJleHBpcmF0aW9uIjogMTU5MTgxNjM5NiwgImFjY19pZCI6IDEwOTQzOTg4LCAidXNlcl9pZCI6IDIzNjE1MzgxfQ==.53491dab76de190adaf5b47f78ea9f83aae0dafdf894321772b2dcac81f48083"
+          },
+          {
+            "id": "pair_393b1089880e4498af93e15965716353",
+            "name": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "isPrivate": false,
+        "metaSortKey": -1591821017992,
+        "method": "GET",
+        "modified": 1591907290623,
+        "name": "WaaS API",
+        "parameters": [],
+        "parentId": "fld_0a3e4d20adac476ca10116341fdc92f7",
+        "settingDisableRenderRequestBody": false,
+        "settingEncodeUrl": true,
+        "settingFollowRedirects": "global",
+        "settingRebuildPath": true,
+        "settingSendCookies": true,
+        "settingStoreCookies": true,
+        "url": "{{ waas_url }}applications",
+        "_type": "request"
+      },
+      {
+        "_id": "req_6f1696888e37497fafbf1abded6f7c23",
+        "authentication": {},
+        "body": {
+          "mimeType": "application/x-www-form-urlencoded",
+          "params": [
+            {
+              "id": "pair_216a0c10954943e681f1fa2909d29192",
+              "name": "email",
+              "value": "mercutio.viz@gmail.com"
+            },
+            {
+              "id": "pair_a9aace495f76400bbe92972ea2c29469",
+              "name": "password",
+              "value": "{{ waas_password  }}"
+            },
+            {
+              "description": "",
+              "disabled": true,
+              "id": "pair_0aa9689e814c4695b0480c06ec9f5462",
+              "name": "account_id",
+              "value": "10943988"
+            }
+          ]
+        },
+        "created": 1573668356585,
+        "description": "",
+        "headers": [
+          {
+            "id": "pair_e6b1d64697ad4f4eb2d18c054e9dfd1c",
+            "name": "Accept",
+            "value": "application/json"
+          },
+          {
+            "id": "pair_bc93380710b145bcb83be2df6f8c2984",
+            "name": "Content-Type",
+            "value": "application/x-www-form-urlencoded"
+          }
+        ],
+        "isPrivate": false,
+        "metaSortKey": -1591821017942,
+        "method": "POST",
+        "modified": 1592255509140,
+        "name": "WaaS Login",
+        "parameters": [],
+        "parentId": "fld_0a3e4d20adac476ca10116341fdc92f7",
+        "settingDisableRenderRequestBody": false,
+        "settingEncodeUrl": true,
+        "settingFollowRedirects": "global",
+        "settingRebuildPath": true,
+        "settingSendCookies": true,
+        "settingStoreCookies": true,
+        "url": "{{ waas_url  }}api_login/",
+        "_type": "request"
+      },
+      {
+        "_id": "req_24f79ab78c974d72a03089d5e6e65edf",
+        "authentication": {
+          "disabled": false,
+          "password": "",
+          "type": "basic",
+          "username": "eyJldCI6IjE1OTIyMzc4MDciLCJwYXNzd29yZCI6IjA3MDJlY2ZlYTI3MWU1MjM5YjYyZGVjN2I3\\nYmZmYmYxIiwidXNlciI6IndhZmFwaXVzZXIifQ==\\n"
+        },
+        "body": {},
+        "created": 1592005763788,
+        "description": "To auth-\nRun POST waf-login, then get token and put into basic auth username field. leave password field empty",
+        "headers": [
+          {
+            "description": "",
+            "id": "pair_71ab90bb81be4177a5a69c604b961048",
+            "name": "Accept",
+            "value": "application/json"
+          },
+          {
+            "description": "",
+            "id": "pair_800bd3481e5c4cf89cadaf1ace2912cc",
+            "name": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "isPrivate": false,
+        "metaSortKey": -1592005763788,
+        "method": "GET",
+        "modified": 1592236920007,
+        "name": "Services",
+        "parameters": [],
+        "parentId": "fld_25457e87d90e4e3e8f4415f1204a5142",
+        "settingDisableRenderRequestBody": false,
+        "settingEncodeUrl": true,
+        "settingFollowRedirects": "global",
+        "settingRebuildPath": true,
+        "settingSendCookies": true,
+        "settingStoreCookies": true,
+        "url": "{{ waf_url  }}services",
+        "_type": "request"
+      },
+      {
+        "_id": "fld_25457e87d90e4e3e8f4415f1204a5142",
+        "created": 1591819368618,
+        "description": "",
+        "environment": {},
+        "environmentPropertyOrder": null,
+        "metaSortKey": -1591819368618,
+        "modified": 1591819368618,
+        "name": "WAF",
+        "parentId": "wrk_e7f2fe9a20a64cbbb4112f4e9778e61e",
+        "_type": "request_group"
+      },
+      {
+        "_id": "req_2eb9befbf83442f791caf9f307f17593",
+        "authentication": {
+          "disabled": false,
+          "password": "",
+          "type": "basic",
+          "username": "eyJ1c2VyIjoid2FmYXBpdXNlciIsImV0IjoiMTU5MjI0MzUyMiIsInBhc3N3b3JkIjoiMmRjMWQ2\\nZGE4OGI5MjlkMTEyZTVlYjViM2I3NTY4YjEifQ==\\n"
+        },
+        "body": {},
+        "created": 1592242294296,
+        "description": "To auth-\nRun POST waf-login, then get token and put into basic auth username field. leave password field empty\n\nManually put in the API URL after the base_url ",
+        "headers": [
+          {
+            "description": "",
+            "id": "pair_71ab90bb81be4177a5a69c604b961048",
+            "name": "Accept",
+            "value": "application/json"
+          },
+          {
+            "description": "",
+            "id": "pair_800bd3481e5c4cf89cadaf1ace2912cc",
+            "name": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "isPrivate": false,
+        "metaSortKey": -1591981719390,
+        "method": "GET",
+        "modified": 1592255222679,
+        "name": "WAF API (GET)",
+        "parameters": [],
+        "parentId": "fld_25457e87d90e4e3e8f4415f1204a5142",
+        "settingDisableRenderRequestBody": false,
+        "settingEncodeUrl": true,
+        "settingFollowRedirects": "global",
+        "settingRebuildPath": true,
+        "settingSendCookies": true,
+        "settingStoreCookies": true,
+        "url": "{{ waf_url  }}configuration-checkpoints/post-install-changes",
+        "_type": "request"
+      },
+      {
+        "_id": "req_8d3e2afbbfbf4813ac45d09433a67a56",
+        "authentication": {
+          "disabled": false,
+          "password": "",
+          "type": "basic",
+          "username": "eyJ1c2VyIjoid2FmYXBpdXNlciIsImV0IjoiMTU5MjI0MzUyMiIsInBhc3N3b3JkIjoiMmRjMWQ2\\nZGE4OGI5MjlkMTEyZTVlYjViM2I3NTY4YjEifQ==\\n"
+        },
+        "body": {
+          "mimeType": "application/json",
+          "text": "{\n  \"backup-type\": \"partial\",\n  \"name\": \"base_config\"\n}"
+        },
+        "created": 1592242419649,
+        "description": "To auth-\nRun POST waf-login, then get token and put into basic auth username field. leave password field empty\n\nPut a JSON object in the body that corresponds to the info being sent for the API in question\n\nManually put in the API URL after the base_url",
+        "headers": [
+          {
+            "description": "",
+            "id": "pair_71ab90bb81be4177a5a69c604b961048",
+            "name": "Accept",
+            "value": "application/json"
+          },
+          {
+            "description": "",
+            "id": "pair_800bd3481e5c4cf89cadaf1ace2912cc",
+            "name": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "isPrivate": false,
+        "metaSortKey": -1591969697191,
+        "method": "POST",
+        "modified": 1592255250903,
+        "name": "WAF API (POST)",
+        "parameters": [],
+        "parentId": "fld_25457e87d90e4e3e8f4415f1204a5142",
+        "settingDisableRenderRequestBody": false,
+        "settingEncodeUrl": true,
+        "settingFollowRedirects": "global",
+        "settingRebuildPath": true,
+        "settingSendCookies": true,
+        "settingStoreCookies": true,
+        "url": "{{ waf_url  }}ops/export-configuration",
+        "_type": "request"
+      },
+      {
+        "_id": "req_d9e813c733c94a639dccd3b24a77a729",
+        "authentication": {
+          "disabled": false,
+          "password": "",
+          "type": "basic",
+          "username": "eyJldCI6IjE1OTIyMzc4MDciLCJwYXNzd29yZCI6IjA3MDJlY2ZlYTI3MWU1MjM5YjYyZGVjN2I3\\nYmZmYmYxIiwidXNlciI6IndhZmFwaXVzZXIifQ==\\n"
+        },
+        "body": {},
+        "created": 1592237200861,
+        "description": "To auth-\nRun POST waf-login, then get token and put into basic auth username field. leave password field empty",
+        "headers": [
+          {
+            "description": "",
+            "id": "pair_71ab90bb81be4177a5a69c604b961048",
+            "name": "Accept",
+            "value": "application/json"
+          },
+          {
+            "description": "",
+            "id": "pair_800bd3481e5c4cf89cadaf1ace2912cc",
+            "name": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "isPrivate": false,
+        "metaSortKey": -1591957674992,
+        "method": "GET",
+        "modified": 1592237252879,
+        "name": "HTTP-Stats",
+        "parameters": [],
+        "parentId": "fld_25457e87d90e4e3e8f4415f1204a5142",
+        "settingDisableRenderRequestBody": false,
+        "settingEncodeUrl": true,
+        "settingFollowRedirects": "global",
+        "settingRebuildPath": true,
+        "settingSendCookies": true,
+        "settingStoreCookies": true,
+        "url": "{{ waf_url  }}stats/http-stats",
+        "_type": "request"
+      },
+      {
+        "_id": "req_614e676687584cdfbb1d0b8d04889ff8",
+        "authentication": {},
+        "body": {
+          "mimeType": "application/json",
+          "text": "{\n\t\"password\": \"{{ waf_password  }}\",\n  \"username\": \"wafapiuser\"\n}"
+        },
+        "created": 1591819395850,
+        "description": "",
+        "headers": [
+          {
+            "description": "",
+            "id": "pair_72401233c05541d6baae9ce820317996",
+            "name": "Accept",
+            "value": "application/json"
+          },
+          {
+            "id": "pair_3a535e38a83a418b8fa91a5a9aa0c11e",
+            "name": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "isPrivate": false,
+        "metaSortKey": -1591819395850,
+        "method": "POST",
+        "modified": 1592255653893,
+        "name": "waf-login",
+        "parameters": [],
+        "parentId": "fld_25457e87d90e4e3e8f4415f1204a5142",
+        "settingDisableRenderRequestBody": false,
+        "settingEncodeUrl": true,
+        "settingFollowRedirects": "global",
+        "settingRebuildPath": true,
+        "settingSendCookies": true,
+        "settingStoreCookies": true,
+        "url": "{{ waf_url  }}login",
+        "_type": "request"
+      },
+      {
+        "_id": "env_ebecd28c7a5d3ccd78f31d080494e43db28b1bb1",
+        "color": null,
+        "created": 1573663883570,
+        "data": {
+          "base_url": "https://api.waas.barracudanetworks.com/v2/waasapi/"
+        },
+        "dataPropertyOrder": {
+          "&": [
+            "base_url"
+          ]
+        },
+        "isPrivate": false,
+        "metaSortKey": 1573663883570,
+        "modified": 1573680388515,
+        "name": "Base Environment",
+        "parentId": "wrk_e7f2fe9a20a64cbbb4112f4e9778e61e",
+        "_type": "environment"
+      },
+      {
+        "_id": "jar_ebecd28c7a5d3ccd78f31d080494e43db28b1bb1",
+        "cookies": [
+          {
+            "creation": "2019-11-13T16:59:24.078Z",
+            "domain": "insomnia.rest",
+            "expires": "2020-11-12T16:59:23.000Z",
+            "hostOnly": false,
+            "httpOnly": true,
+            "id": "511683168060975",
+            "key": "__cfduid",
+            "lastAccessed": "2019-11-13T16:59:24.078Z",
+            "path": "/",
+            "secure": true,
+            "value": "dffe91b32f6bd5a50e4fc970027da116b1573664363"
+          },
+          {
+            "creation": "2019-11-13T18:09:22.373Z",
+            "domain": "api.waas.barracudanetworks.com",
+            "expires": "2020-06-22T21:11:52.000Z",
+            "hostOnly": true,
+            "id": "08845987573840497",
+            "key": "AWSALB",
+            "lastAccessed": "2020-06-15T21:11:53.176Z",
+            "path": "/",
+            "value": "Fv/d2lolaLxPOZLznN+fjQPoC5geyJO/u1qLfar4fJY9jAH6+YJzkdT/TUhYA/f7mGVoP1EUxDgcqrK/EyZRsX/JsNWxAbZsAIrRbwZeZEK82vn3/JqCusqvGBHr"
+          },
+          {
+            "creation": "2019-11-13T18:09:22.373Z",
+            "domain": "api.waas.barracudanetworks.com",
+            "extensions": [
+              "SameSite=Lax"
+            ],
+            "hostOnly": true,
+            "httpOnly": true,
+            "id": "22800602263407455",
+            "key": "sessionid",
+            "lastAccessed": "2020-06-15T21:11:53.176Z",
+            "path": "/",
+            "secure": true,
+            "value": "x369sds7w871v7h5t8p65azqtkt9z7hl"
+          },
+          {
+            "creation": "2020-03-06T16:29:11.650Z",
+            "domain": "api.waas.barracudanetworks.com",
+            "expires": "2020-06-22T21:11:52.000Z",
+            "extensions": [
+              "SameSite=None"
+            ],
+            "hostOnly": true,
+            "id": "11733043080363448",
+            "key": "AWSALBCORS",
+            "lastAccessed": "2020-06-15T21:11:53.176Z",
+            "path": "/",
+            "secure": true,
+            "value": "Fv/d2lolaLxPOZLznN+fjQPoC5geyJO/u1qLfar4fJY9jAH6+YJzkdT/TUhYA/f7mGVoP1EUxDgcqrK/EyZRsX/JsNWxAbZsAIrRbwZeZEK82vn3/JqCusqvGBHr"
+          }
+        ],
+        "created": 1573663883573,
+        "modified": 1592255513176,
+        "name": "Default Jar",
+        "parentId": "wrk_e7f2fe9a20a64cbbb4112f4e9778e61e",
+        "_type": "cookie_jar"
+      },
+      {
+        "_id": "spc_65a5ec8f63dc4731a9543344f973c61b",
+        "contentType": "yaml",
+        "contents": "",
+        "created": 1591895938899,
+        "fileName": "Insomnia",
+        "modified": 1591895938899,
+        "parentId": "wrk_e7f2fe9a20a64cbbb4112f4e9778e61e",
+        "_type": "api_spec"
+      },
+      {
+        "_id": "env_4ea38fc112214238b6395f96662f0356",
+        "color": null,
+        "created": 1573663954612,
+        "data": {
+          "cgf_api_token": "YOUR_CGF_TOKEN",
+          "cgf_url": "http://YOUR_CGF_IP_OR_HOSTNAME:8080/rest/",
+          "waas_password": "YOUR_WAAS_USER_PASSWORD",
+          "waas_url": "https://api.waas.barracudanetworks.com/v2/waasapi/",
+          "waf_password": "YOUR_WAF_API_USER_PASSWORD",
+          "waf_url": "http://YOUR_WAF_IP_OR_HOSTNAME:8000/restapi/v3.1/"
+        },
+        "dataPropertyOrder": {
+          "&": [
+            "waas_url",
+            "waas_password",
+            "cgf_url",
+            "cgf_api_token",
+            "waf_url",
+            "waf_password"
+          ]
+        },
+        "isPrivate": false,
+        "metaSortKey": 1573663954612,
+        "modified": 1592255639300,
+        "name": "API-Lab",
+        "parentId": "env_ebecd28c7a5d3ccd78f31d080494e43db28b1bb1",
+        "_type": "environment"
+      }
+    ]
+  }
