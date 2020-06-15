@@ -67,4 +67,4 @@ PS API module
 
 ## Additional Resources
 
-Making repeated API calls during the development phase can be aided with tools. There are several browser add-ons, such as RESTer for FireFox and Chrome. Additionally, there is a tool for Linux, Mac, and Windows called [Insomnia](https://support.insomnia.rest/) which is designed to assist with rapid API testing.
+Making repeated API calls during the development phase can be aided with tools. There are several browser add-ons, such as RESTer for FireFox and Chrome. Additionally, there is a tool for Linux, Mac, and Windows called [Insomnia](https://support.insomnia.rest/) which is designed to assist with rapid API testing. See the Resources directory for a sample JSON file that can be imported into Insomnia as an environment file.
