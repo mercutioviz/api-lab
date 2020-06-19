@@ -23,6 +23,6 @@ fi
 
 echo "${response}"
 
-waastoken=`echo ${response} | jq -r '.' | grep 'key' | cut -b "10-" | sed -e 's/"//g'`
+waastoken=`echo ${response} | jq -r '.' | grep 'key' | cut -b "10-" | sed -e 's/[",]//g'`
 echo "waastoken=${waastoken}"
 export "waastoken=${waastoken}"
