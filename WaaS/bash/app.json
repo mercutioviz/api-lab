@@ -1,0 +1,20 @@
+{
+    "useHttp": true,
+    "httpsServicePort": "443",
+    "serviceType": "HTTP",
+    "httpServicePort": 80,
+    "applicationName": "My New Waas App",
+    "backendPort": 443,
+    "account_ips": {},
+    "redirectHTTP": true,
+    "maliciousTraffic": "Passive",
+    "hostnames": [
+      {
+        "hostname": "test01.waas.lkscd.com"
+      }
+    ],
+    "useExistingIp": false,
+    "backendIp": "51.143.38.93",
+    "backendType": "HTTPS",
+    "useHttps": true
+  }
