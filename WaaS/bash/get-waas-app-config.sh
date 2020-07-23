@@ -5,7 +5,7 @@
 # Accepts app id as CLI arg and retrieves config
 #
 
-## If CLI arg passed then assume it is the account_id
+## If CLI arg passed then assume it is the application id
 if [ -z "$1" ]
 then
     echo "Please supply the application id as CLI argument"
