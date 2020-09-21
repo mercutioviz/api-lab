@@ -17,7 +17,7 @@ else
 fi
 
 user='wafapiuser'
-pass='cloud2020'
+pass=`cat ./creds.ignore`
 response=`curl -s -X POST http://${host}/restapi/v3.1/login -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"password\": \"${pass}\", \"username\": \"${user}\"}"`
 
 #echo "${response}"
