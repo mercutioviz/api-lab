@@ -9,7 +9,13 @@
 # ". ./waf-login.sh" at the CLI
 #
 
-host='51.143.38.93:8000'
+if [ -z "$1" ]
+then
+    host='51.143.38.93:8000'
+else
+    host="$1"
+fi
+
 user='wafapiuser'
 pass='cloud2020'
 response=`curl -s -X POST http://${host}/restapi/v3.1/login -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"password\": \"${pass}\", \"username\": \"${user}\"}"`
