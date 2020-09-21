@@ -1,2 +1,4 @@
 WaaS/bash/creds.ignore
 WaaS/powershell/creds.ignore
+WAF/bash/creds.ignore
+WAF/powershell/creds.ignore
