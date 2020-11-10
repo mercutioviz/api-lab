@@ -4,3 +4,5 @@ WAF/bash/creds.ignore
 WAF/powershell/creds.ignore
 WaaS/bash/*.json
 WAF/bash/*.json
+waas-app-snapshot.json
+WaaS/powershell/accountid.ignore
