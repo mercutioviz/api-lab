@@ -1,6 +1,6 @@
 # get-waas-config.ps1
 #
-# Retrieves dump of WaaS applications. Specify format; defaults to psobject
+# Retrieves dump of WaaS application. Specify format; defaults to psobject
 #
 # NOTE: do a "dot include" to have $r object exported as a variable
 # Example:
