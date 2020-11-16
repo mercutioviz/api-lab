@@ -2,7 +2,7 @@
 #
 # Accepts username and password and WAF hostname/IP:port and prints out the token
 #
-# NOTE: do a "dot include" to have ${waftoken} populated in the bash env
+# NOTE: do a "dot include" to have $waftoken populated in the PowerShell session
 # Example:
 # ". ./waf-login.ps1" at the CLI
 #
