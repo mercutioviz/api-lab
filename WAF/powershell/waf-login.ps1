@@ -9,14 +9,26 @@
 param(
     [Parameter(Mandatory=$false,ValueFromPipeline=$true)]
     [string]
-    $wafhost
+    $wafhost,
+    [Parameter(Mandatory=$false,ValueFromPipeline=$true)]
+    [switch]
+    $https = $false
 )
 
-if ( $wafhost -eq '' ) {
-    $wafhost = '51.143.38.93:8000'
+$apiVer = 'v3.1'
+
+if ( $https -eq $true ) {
+    if ( $wafhost -eq '' ) {
+        $wafhost = '51.143.38.93:8443'
+    }
+    $loginurl='https://' + $wafhost + "/restapi/$apiVer/login"
+} else {
+    if ( $wafhost -eq '' ) {
+        $wafhost = '51.143.38.93:8000'
+    }    
+    $loginurl='http://' + $wafhost + "/restapi/$apiVer/login"
 }
 
-$loginurl='http://' + $wafhost + '/restapi/v3.1/login'
 $contentType = 'application/json'
 
 $plainTextPassword = (Get-Content ".\creds.ignore" | out-string).Trim()
@@ -27,7 +39,7 @@ $loginBody = @{
 }
 $loginBodyJSON = $loginBody | ConvertTo-Json
 
-$authResponse = Invoke-WebRequest -Uri $loginurl -Method Post -Body $loginBodyJSON -ContentType $contentType
+$authResponse = Invoke-WebRequest -Uri $loginurl -Method Post -Body $loginBodyJSON -ContentType $contentType -SkipCertificateCheck
 
 $waftoken = ($authResponse.Content | ConvertFrom-Json).token + ':'
 $waftoken
