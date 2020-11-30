@@ -183,7 +183,7 @@ Write-Host $waasJson
 Write-Host "Invoke-WebRequest POST $waashost/$baseurl/ "
 try {
     #Write-Host "DEBUGGING" -ForegroundColor Green
-    $newApp = Invoke-WebRequest -Uri $waashost/$apiurl -Method Post -Body $waasJson -ContentType $contentType -Headers @{'Accept' = 'application/json'; 'auth-api' = $waastoken }
+    $newApp = Invoke-WebRequest -Uri $waashost/$baseurl/ -Method Post -Body $waasJson -ContentType $contentType -Headers @{'Accept' = 'application/json'; 'auth-api' = $waastoken }
 } catch {
     Write-Host "Unable to create new WaaS application." -ForegroundColor Yellow
     Write-Host "  StatusCode:" $_.Exception.Response.StatusCode.value__ 
