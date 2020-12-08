@@ -22,7 +22,7 @@ headers='-H "accept: application/json" -H "Content-Type: application/json"'
 response=`curl -s -X ${method} https://${host}${apiurl}/${appid}/url_profiles/ ${headers} -H "auth-api: ${waastoken}"`
 
 ## DEBUG 
-#echo "curl -s -X ${method} https://${host}${apiurl} ${headers} ${auth}"
+#echo "curl -s -X ${method} https://${host}${apiurl}/${appid}/url_profiles/ ${headers} -H \"auth-api: ${waastoken}\""
 
 echo "${response}"
 
