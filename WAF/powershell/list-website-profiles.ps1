@@ -27,4 +27,16 @@ $headers = @{
 
 $r = Invoke-WebRequest -uri $url -Method Get -Headers $headers -ContentType $contentType
 
-$r | ConvertFrom-Json
+#$r | ConvertFrom-Json
+
+$d = $r.Content | ConvertFrom-Json
+foreach ( $website in $d.data | get-member -type properties | ForEach-Object name ) {
+    write-host "Site: $website" -ForegroundColor Cyan
+    $url = $url + "/$website/website-profile"
+    $r = Invoke-WebRequest -uri $url -Method Get -Headers $headers -ContentType $contentType
+    $siteprofile = $r.content | ConvertFrom-Json
+    $url = $url + "/$website/url-profiles"
+    $r = Invoke-WebRequest -uri $url -Method Get -Headers $headers -ContentType $contentType
+
+}
+
