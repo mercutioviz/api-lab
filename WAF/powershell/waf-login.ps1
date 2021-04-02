@@ -11,6 +11,9 @@ param(
     [string]
     $wafhost,
     [Parameter(Mandatory=$false,ValueFromPipeline=$true)]
+    [string]
+    $username,
+    [Parameter(Mandatory=$false,ValueFromPipeline=$true)]
     [switch]
     $https = $false
 )
@@ -32,7 +35,10 @@ if ( $https -eq $true ) {
 $contentType = 'application/json'
 
 $plainTextPassword = (Get-Content ".\creds.ignore" | out-string).Trim()
-$username='wafapiuser'
+if ( $username -eq '' ) {
+    $username='wafapiuser'
+}
+
 $loginBody = @{
     password = "$plainTextPassword"
     username = "$username"
