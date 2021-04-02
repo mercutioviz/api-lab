@@ -3,7 +3,7 @@
     "httpsServicePort": "443",
     "serviceType": "HTTP",
     "httpServicePort": 80,
-    "applicationName": "My New Waas App",
+    "applicationName": "My New Waas App 01",
     "backendPort": 443,
     "account_ips": {},
     "redirectHTTP": true,
