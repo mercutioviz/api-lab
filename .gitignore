@@ -1,8 +1,11 @@
 WaaS/bash/creds.ignore
-WaaS/powershell/creds.ignore
+WaaS/powershell/creds.ignore*
 WAF/bash/creds.ignore
-WAF/powershell/creds.ignore
+WAF/powershell/creds.ignore*
 WaaS/bash/*.json
 WAF/bash/*.json
+WaaS/powershell/*.json
+WAF/powershell/*.json
 waas-app-snapshot.json
 WaaS/powershell/accountid.ignore
+WAF/powershell/add-website.ps1
