@@ -14,6 +14,9 @@ param(
     [string]
     $username,
     [Parameter(Mandatory=$false,ValueFromPipeline=$true)]
+    [string]
+    $credsfile = '.\creds.ignore',
+    [Parameter(Mandatory=$false,ValueFromPipeline=$true)]
     [switch]
     $https = $false
 )
@@ -34,7 +37,7 @@ if ( $https -eq $true ) {
 
 $contentType = 'application/json'
 
-$plainTextPassword = (Get-Content ".\creds.ignore" | out-string).Trim()
+$plainTextPassword = (Get-Content $credsfile | out-string).Trim()
 if ( $username -eq '' ) {
     $username='wafapiuser'
 }
