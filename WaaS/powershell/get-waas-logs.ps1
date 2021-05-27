@@ -1,10 +1,10 @@
 # get-waas-applications.ps1
 #
-# Retrieves dump of WaaS applications. Specify format; defaults to psobject
+# Retrieves dump of WaaS logs. Specify format; defaults to psobject
 #
 # NOTE: do a "dot include" to have $r object exported as a variable
 # Example:
-# ". ./get-waas-applications.ps1" at the CLI
+# ". ./get-waas-logs.ps1 -appId 1234 -logType event -quickRange r_7d" at the CLI
 #   Allows for things like:
 #  $r.Content | Select-Object name,id
 #
@@ -14,7 +14,7 @@ param(
     [string]
     $OutputType = 'PSObject',
     [Parameter(Mandatory=$true,ValueFromPipeline=$true)]
-    [ValidateSet('waf','access')]
+    [ValidateSet('waf','access','event')]
     [string]
     $logType,
     [Parameter(Mandatory=$true,ValueFromPipeline=$true)]
