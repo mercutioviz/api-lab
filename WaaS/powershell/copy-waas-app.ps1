@@ -21,6 +21,8 @@ param(
     $appId
 )
 
+# Number of seconds to sleep/pause after a major update
+$sleepTimer = 5
 
 ### Functions ###
 # Output from reading endpoint data is not in the same format needed for PATCHing or POSTing
@@ -206,11 +208,14 @@ if ( $null -ne $newAppInfo.id ) {
     exit
 }
 $newId = $newAppInfo.id
+$newAppConfig = Invoke-RestMethod -Uri $waashost/$baseurl/$newId/export/compliance -Method $method -ContentType $contentType -Headers @{'Accept' = 'application/json'; 'auth-api' = $waastoken }
 
-Write-Host "Initial creation seems to have worked, pausing 10 seconds before continuing..."
-Start-Sleep -s 10
+Write-Host "Initial creation seems to have worked, pausing $sleepTimer seconds before continuing..."
+Start-Sleep -s $sleepTimer
 
 # Create new WaaS app step 2 - import configuration
+# Skip the default rewrite rules
+$appConfig.psobject.Properties.Remove('request_rewrite')
 $appConfigJson = $appConfig | ConvertTo-Json -Depth 50
 Write-Host "Invoke-RestMethod PATCH $waashost/$baseurl/$newId/import"
 try {
@@ -221,8 +226,8 @@ try {
     Write-Host "  StatusDescription:" $_.Exception.Response.StatusDescription
     exit
 }
-Write-Host "Import seems to have worked, pausing 10 seconds before continuing..."
-Start-Sleep -s 10
+Write-Host "Import seems to have worked, pausing $sleepTimer seconds before continuing..."
+Start-Sleep -s $sleepTimer
 
 # Create new WaaS app step 3 - import endpoint configuration
 #  Retrieve new WaaS app's endpoints so we can match them up with the source app's endpoints
