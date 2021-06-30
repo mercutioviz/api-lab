@@ -8,7 +8,10 @@
 param(
     [Parameter(Mandatory=$false,ValueFromPipeline=$true)]
     [string]
-    $accountId
+    $accountId,
+    [Parameter(Mandatory=$false,ValueFromPipeline=$true)]
+    [string]
+    $email = "mercutio.viz@gmail.com"
 )
 
 $waashost='https://api.waas.barracudanetworks.com'
@@ -19,7 +22,7 @@ $plainTextPassword = (Get-Content ".\creds.ignore" | out-string).Trim()
 
 $loginBody = @{
  password = "$plainTextPassword"
- email = "mercutio.viz@gmail.com"
+ email = $email
 }
 
 if ( $accountId -ne '' ) {
