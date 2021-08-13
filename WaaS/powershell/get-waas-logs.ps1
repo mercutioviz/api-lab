@@ -1,6 +1,8 @@
 # get-waas-applications.ps1
 #
 # Retrieves dump of WaaS logs. Specify format; defaults to psobject
+#  Specify noDownload option to receive JSON or PSObject and to use itemsPerPage
+#  By default script will attempt to download CSV data (itemsPerPage has no effect)
 #
 # NOTE: do a "dot include" to have $r object exported as a variable
 # Example:
@@ -14,12 +16,18 @@ param(
     [string]
     $OutputType = 'PSObject',
     [Parameter(Mandatory=$true,ValueFromPipeline=$true)]
-    [ValidateSet('waf','access','event')]
+    [ValidateSet('waf','access','event','all')]
     [string]
     $logType,
     [Parameter(Mandatory=$true,ValueFromPipeline=$true)]
     [Int16]
     $appId,
+    [Parameter(Mandatory=$false,ValueFromPipeline=$true)]
+    [Int16]
+    $itemsPerPage = 100,
+    [Parameter(Mandatory=$false,ValueFromPipeline=$true)]
+    [switch]
+    $noDownload,
     [Parameter(Mandatory=$false,ValueFromPipeline=$true)]
     [ValidateSet('r_1h','r_3h','r_24h','r_7d','r_14d','r_30d')]
     [string]
@@ -30,10 +38,23 @@ $apiurl='v2/waasapi/applications/' + $appId + '/' + $logType + '/logs'
 $contentType = 'application/json'
 $method = 'GET'
 
+if ( $noDownload -and $logType -eq 'all' ) {
+    Write-Host "Cannot download log type 'all' - please choose 'waf' or 'access' to download" -ForegroundColor Yellow
+    exit
+}
+
 if ( $quickRange ) {
-    $qstring = '?download=true'
+    if ( $noDownload ) {
+        $qstring = '?id=' + $appId + '&quickRange=' + $quickRange + '&itemsPerPage=' + $itemsPerPage
+    } else {
+        $qstring = '?download=true&quickRange=' + $quickRange
+    }
 } else {
-    $qstring = '?download=true&quickRange=' + $quickRange
+    if ( $noDownload ) {
+        $qstring = '?id=' + $appId + '&itemsPerPage=100'
+    } else {
+        $qstring = '?download=true'
+    }
 }
 
 if ( $OutputType -eq 'PSObject' ) {
