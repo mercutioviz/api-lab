@@ -137,11 +137,12 @@ $waashost='https://api.waas.barracudanetworks.com'
 $baseurl='v2/waasapi/applications'
 $contentType = 'application/json'
 $method = 'GET'
+$qstring = "?include_servers=false&include_endpoints=false"
 
 # Export app info
 Write-Host "Invoke-RestMethod GET $waashost/$baseurl/$appId/"
 try {
-    $appInfo = Invoke-RestMethod -Uri $waashost/$baseurl/$appId/ -Method $method -ContentType $contentType -Headers @{'Accept' = 'application/json'; 'auth-api' = $waastoken }
+    $appInfo = Invoke-RestMethod -Uri $waashost/$baseurl/$appId -Method $method -ContentType $contentType -Headers @{'Accept' = 'application/json'; 'auth-api' = $waastoken }
 } catch {
     Write-Host "Unable to retrieve information for WaaS App Id $appId." -ForegroundColor Yellow
     Write-Host "  StatusCode:" $_.Exception.Response.StatusCode.value__ 
@@ -156,8 +157,8 @@ if ( $null -ne $appInfo.errors ) {
 }
 
 # Export app config
-Write-Host "Invoke-RestMethod GET $waashost/$baseurl/$appId/export"
-$appConfig = Invoke-RestMethod -Uri $waashost/$baseurl/$appId/export -Method $method -ContentType $contentType -Headers @{'Accept' = 'application/json'; 'auth-api' = $waastoken }
+Write-Host "Invoke-RestMethod GET $waashost/$baseurl/$appId/export/$qstring"
+$appConfig = Invoke-RestMethod -Uri $waashost/$baseurl/$appId/export/$qstring -Method $method -ContentType $contentType -Headers @{'Accept' = 'application/json'; 'auth-api' = $waastoken }
 if ( $appConfig -eq  '' ) {
     Write-Host("App $appId not found, aborting operation...") -ForegroundColor Red
     exit
@@ -208,19 +209,18 @@ if ( $null -ne $newAppInfo.id ) {
     exit
 }
 $newId = $newAppInfo.id
-$newAppConfig = Invoke-RestMethod -Uri $waashost/$baseurl/$newId/export/compliance -Method $method -ContentType $contentType -Headers @{'Accept' = 'application/json'; 'auth-api' = $waastoken }
+$newAppConfig = Invoke-RestMethod -Uri $waashost/$baseurl/$newId/export/$qstring -Method $method -ContentType $contentType -Headers @{'Accept' = 'application/json'; 'auth-api' = $waastoken }
 
 Write-Host "Initial creation seems to have worked, pausing $sleepTimer seconds before continuing..."
 Start-Sleep -s $sleepTimer
 
 # Create new WaaS app step 2 - import configuration
-# Skip the default rewrite rules
-$appConfig.psobject.Properties.Remove('request_rewrite')
-$appConfigJson = $appConfig | ConvertTo-Json -Depth 50
-Write-Host "Invoke-RestMethod PATCH $waashost/$baseurl/$newId/import"
+# Skip the default rewrite rules and regions
+$appConfigJson = $appConfig | Select-Object -Property * -ExcludeProperty regions,request_rewrite | ConvertTo-Json -Depth 50
+Write-Host "Invoke-RestMethod PUT $waashost/$baseurl/$newId/import/$qstring"
 try {
     #Write-Host "DEBUGGING" -ForegroundColor Green
-    $resimport = Invoke-RestMethod -Method Patch -Uri $waashost/$baseurl/$newId/import -ContentType $contentType -Headers @{'Accept' = 'application/json'; 'auth-api' = $waastoken } -Body $appConfigJson
+    $resimport = Invoke-RestMethod -Method Put -Uri "$waashost/$baseurl/$newId/import/?include_servers=true&include_endpoints=false" -ContentType $contentType -Headers @{'Accept' = 'application/json'; 'auth-api' = $waastoken } -Body $appConfigJson
 } catch {
     Write-Host "  StatusCode:" $_.Exception.Response.StatusCode.value__ 
     Write-Host "  StatusDescription:" $_.Exception.Response.StatusDescription
