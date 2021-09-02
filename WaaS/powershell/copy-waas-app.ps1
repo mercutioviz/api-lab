@@ -132,6 +132,14 @@ $waasBootstrap = '{
     "redirectHTTP": true
   }' | ConvertFrom-Json
 
+# Default rewrite rules - these need to be removed from the source app
+#  If we try to upload with these value included we get a 500 error
+$default_rewrite_rules = '{
+    "remove-accept-encoding-header": "Remove Header",
+    "Host_Header_for_Testing": "Rewrite Header",
+    "default-req-rewrite-rule": "Insert Header"
+}' | ConvertFrom-Json
+
 # Connection basics
 $waashost='https://api.waas.barracudanetworks.com'
 $baseurl='v2/waasapi/applications'
@@ -216,6 +224,7 @@ Start-Sleep -s $sleepTimer
 
 # Create new WaaS app step 2 - import configuration
 # Skip the default rewrite rules and regions
+
 $appConfigJson = $appConfig | Select-Object -Property * -ExcludeProperty regions,request_rewrite | ConvertTo-Json -Depth 50
 Write-Host "Invoke-RestMethod PUT $waashost/$baseurl/$newId/import/$qstring"
 try {
