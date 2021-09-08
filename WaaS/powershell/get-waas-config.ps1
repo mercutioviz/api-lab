@@ -21,14 +21,15 @@ $waashost='https://api.waas.barracudanetworks.com'
 $apiurl='v2/waasapi/applications/'
 $contentType = 'application/json'
 $method = 'GET'
+$qstring = "?include_servers=true&include_endpoints=true"
 
 if ( $OutputType -eq 'PSObject' ) {
     Write-Host "Invoke RestMethod"
-    $r = Invoke-RestMethod -Uri $waashost/$apiurl/$appId/export -Method $method -ContentType $contentType -Headers @{'Accept' = 'application/json'; 'auth-api' = $waastoken }
+    $r = Invoke-RestMethod -Uri $waashost/$apiurl/$appId/export/$qstring -Method $method -ContentType $contentType -Headers @{'Accept' = 'application/json'; 'auth-api' = $waastoken }
     $r
 } else {
     Write-Host "Invoke WebRequest"
-    $r = Invoke-WebRequest -Uri $waashost/$apiurl/$appId/export -Method $method -ContentType $contentType -Headers @{'Accept' = 'application/json'; 'auth-api' = $waastoken }
+    $r = Invoke-WebRequest -Uri $waashost/$apiurl/$appId/export/$qstring -Method $method -ContentType $contentType -Headers @{'Accept' = 'application/json'; 'auth-api' = $waastoken }
     $r.Content
 }
 
