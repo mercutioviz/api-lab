@@ -19,6 +19,9 @@ param(
     [ValidateSet('waf','access','event','all')]
     [string]
     $logType,
+    [Parameter(Mandatory=$false,ValueFromPipeline=$true)]
+    [string]
+    $jsonFilters,
     [Parameter(Mandatory=$true,ValueFromPipeline=$true)]
     [Int16]
     $appId,
@@ -55,6 +58,10 @@ if ( $quickRange ) {
     } else {
         $qstring = '?download=true'
     }
+}
+
+if ( $jsonFilters ) {
+    $qstring = $qstring + '&jsonFilters=' + $jsonFilters
 }
 
 if ( $OutputType -eq 'PSObject' ) {
