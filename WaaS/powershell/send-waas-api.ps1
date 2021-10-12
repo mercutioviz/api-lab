@@ -25,7 +25,7 @@ param(
     $api
 )
 $waasHost='https://api.waas.barracudanetworks.com'
-$baseUrl='v2/waasapi/applications/'
+$baseUrl='v2/waasapi/applications'
 $contentType = 'application/json'
 
 if ( $OutputType -eq 'PSObject' ) {
