@@ -22,9 +22,18 @@ param(
     [Parameter(Mandatory=$false,ValueFromPipeline=$true)]
     [string]
     $jsonFilters,
+    [Parameter(Mandatory=$false,ValueFromPipeline=$true)]
+    [Int32]
+    $dateFrom,
+    [Parameter(Mandatory=$false,ValueFromPipeline=$true)]
+    [Int32]
+    $dateTo,
     [Parameter(Mandatory=$true,ValueFromPipeline=$true)]
     [Int16]
     $appId,
+    [Parameter(Mandatory=$false,ValueFromPipeline=$true)]
+    [Int16]
+    $pageNumber = 1,
     [Parameter(Mandatory=$false,ValueFromPipeline=$true)]
     [Int16]
     $itemsPerPage = 100,
@@ -48,20 +57,24 @@ if ( $noDownload -and $logType -eq 'all' ) {
 
 if ( $quickRange ) {
     if ( $noDownload ) {
-        $qstring = '?id=' + $appId + '&quickRange=' + $quickRange + '&itemsPerPage=' + $itemsPerPage
+        $qstring = '?id=' + $appId + '&quickRange=' + $quickRange + '&page=' + $pageNumber + '&itemsPerPage=' + $itemsPerPage
     } else {
         $qstring = '?download=true&quickRange=' + $quickRange
     }
 } else {
     if ( $noDownload ) {
-        $qstring = '?id=' + $appId + '&itemsPerPage=100'
+        $qstring = '?id=' + $appId + '&page=' + $pageNumber + '&itemsPerPage=' + $itemsPerPage
+        if ( $dateFrom -and $dateTo ) {
+            $qstring = $qstring + '&from=' + $dateFrom + '&to=' + $dateTo
+        }
     } else {
         $qstring = '?download=true'
     }
 }
 
 if ( $jsonFilters ) {
-    $qstring = $qstring + '&jsonFilters=' + $jsonFilters
+    $jsonFiltersEncoded = [System.Web.HTTPUtility]::UrlEncode($jsonFilters)
+    $qstring = $qstring + '&jsonFilters=' + $jsonFiltersEncoded
 }
 
 if ( $OutputType -eq 'PSObject' ) {
