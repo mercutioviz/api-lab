@@ -14,6 +14,10 @@ param(
     [string]
     $OutputType = 'PSObject',
     [Parameter(Mandatory=$false,ValueFromPipeline=$true)]
+    [ValidateSet('2','4')]
+    [string]
+    $apiVersion = '2',
+    [Parameter(Mandatory=$false,ValueFromPipeline=$true)]
     [ValidateSet('GET','POST','PUT','PATCH','DELETE')]
     [string]
     $Method = 'GET',
@@ -25,12 +29,12 @@ param(
     $api
 )
 $waasHost='https://api.waas.barracudanetworks.com'
-$baseUrl='v2/waasapi/applications'
+$baseUrl='v' + $apiVersion + '/waasapi/applications'
 $contentType = 'application/json'
 
 if ( $OutputType -eq 'PSObject' ) {
     Write-Host "Invoke RestMethod"
-    if ( $Method -in ('GET', 'DELETE') ) {
+    if ( $Method -in ('GET', 'DELETE') -or $Body -eq '' ) {
         $r = Invoke-RestMethod -Uri $waasHost/$baseUrl/$api -Method $Method -ContentType $contentType -Headers @{'Accept' = 'application/json'; 'auth-api' = $waastoken }
     } else {
         $r = Invoke-RestMethod -Uri $waasHost/$baseUrl/$api -Method $Method -ContentType $contentType -Headers @{'Accept' = 'application/json'; 'auth-api' = $waastoken} -Body $Body
@@ -38,7 +42,7 @@ if ( $OutputType -eq 'PSObject' ) {
     $r
 } else {
     Write-Host "Invoke WebRequest"
-    if ( $Method -in ('GET', 'DELETE') ) {
+    if ( $Method -in ('GET', 'DELETE') -or $Body -eq '' ) {
         $r = Invoke-WebRequest -Uri $waasHost/$baseUrl/$api -Method $Method -ContentType $contentType -Headers @{'Accept' = 'application/json'; 'auth-api' = $waastoken }
     } else {
         $r = Invoke-WebRequest -Uri $waasHost/$baseUrl/$api -Method $Method -ContentType $contentType -Headers @{'Accept' = 'application/json'; 'auth-api' = $waastoken } -Body $Body
