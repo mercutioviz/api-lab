@@ -306,3 +306,5 @@ if ( $srcEndpointList.Count -ge 1 ) {
     Write-Host "All endpoints updated. Please review new WaaS app to ensure the configuration was successful."
 }
 
+## Update server settings that don't get applied at creation time
+$newAppServers = $appServers

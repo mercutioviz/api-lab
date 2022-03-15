@@ -3,18 +3,18 @@
     "httpsServicePort": "443",
     "serviceType": "HTTP",
     "httpServicePort": 80,
-    "applicationName": "My New Waas App 01",
+    "applicationName": "WaaS Demo New",
     "backendPort": 443,
     "account_ips": {},
     "redirectHTTP": true,
     "maliciousTraffic": "Passive",
     "hostnames": [
       {
-        "hostname": "test01.waas.lkscd.com"
+        "hostname": "waas.cudacloudlab.net"
       }
     ],
     "useExistingIp": false,
-    "backendIp": "51.143.38.93",
-    "backendType": "HTTPS",
+    "backendIp": "20.115.226.250",
+    "backendType": "HTTP",
     "useHttps": true
   }
