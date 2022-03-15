@@ -24,11 +24,11 @@ $method = 'GET'
 
 if ( $OutputType -eq 'PSObject' ) {
     Write-Host "Invoke RestMethod"
-    $r = Invoke-RestMethod -Uri $waashost/$baseUrl/$api -Method $method -ContentType $contentType -Headers @{'Accept' = 'application/json'; 'auth-api' = $waastoken }
+    $r = Invoke-RestMethod -Uri "$waashost/$baseUrl/$api" -Method $method -ContentType $contentType -Headers @{'Accept' = 'application/json'; 'auth-api' = $waastoken }
     $r
 } else {
     Write-Host "Invoke WebRequest"
-    $r = Invoke-WebRequest -Uri $waashost/$baseUrl/$api -Method $method -ContentType $contentType -Headers @{'Accept' = 'application/json'; 'auth-api' = $waastoken }
+    $r = Invoke-WebRequest -Uri "$waashost/$baseUrl/$api" -Method $method -ContentType $contentType -Headers @{'Accept' = 'application/json'; 'auth-api' = $waastoken }
     $r.Content
 }
 
