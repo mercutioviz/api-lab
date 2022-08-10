@@ -41,8 +41,13 @@ for ( $i=0; $i -lt $trustedhosts.Length; $i++ ) {
     #Write-Host "Data: " $name $ip $netmask $note
     $data = @{ 'hostname' = "$name"; 'ip' = "$ip"; 'netmask' = "$netmask"; 'note' = "$note" }
     $jsonBody = $data | ConvertTo-Json
-
-    $r = ./send-waas-api.ps1 -apiversion 4 -apikeyfile $apikeyfile -Method 'POST' -api "applications/$appName/trusted_hosts/hosts/" -Body $jsonBody
-    
+    try {
+        $r = ./send-waas-api.ps1 -apiversion 4 -apikeyfile $apikeyfile -Method 'POST' -api "applications/$appName/trusted_hosts/hosts/" -Body $jsonBody
+    } catch {
+        Write-Host "  StatusCode:" $_.Exception.Response.StatusCode.value__ 
+        Write-Host "  StatusDescription:" $_.Exception.Response.StatusDescription
+        exit
+        $r
+    }
 }
 
