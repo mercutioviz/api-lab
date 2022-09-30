@@ -69,6 +69,9 @@ if ( $quickRange ) {
         }
     } else {
         $qstring = '?download=true'
+        if ( $dateFrom -and $dateTo ) {
+            $qstring = $qstring + '&from=' + $dateFrom + '&to=' + $dateTo
+        }
     }
 }
 
