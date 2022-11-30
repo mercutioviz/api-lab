@@ -41,6 +41,12 @@ param(
     [switch]
     $noDownload,
     [Parameter(Mandatory=$false,ValueFromPipeline=$true)]
+    [string]
+    $apikey,
+    [Parameter(Mandatory=$false,ValueFromPipeline=$true)]
+    [string]
+    $apikeyfile,
+    [Parameter(Mandatory=$false,ValueFromPipeline=$true)]
     [ValidateSet('r_1h','r_3h','r_24h','r_7d','r_14d','r_30d')]
     [string]
     $quickRange
@@ -49,6 +55,33 @@ $waashost='https://api.waas.barracudanetworks.com'
 $apiurl='v2/waasapi/applications/' + $appId + '/' + $logType + '/logs'
 $contentType = 'application/json'
 $method = 'GET'
+
+# Determine which type of auth to use
+# apikeyfile first, apikey second, waastoken last
+
+if ( ! $apikeyfile -and ! $apikey -and ! $waastoken ) {
+    Write-Host "No auth method specified." -ForegroundColor Yellow
+    Write-Host 'Choose apikeyfile, apikey, or set $waastoken environment variable' -ForegroundColor Yellow
+    Write-Host
+    exit
+}
+
+if ( $apikeyfile -and ! $apikey -and !(Test-Path $apikeyfile) ) {
+    Write-Host "Could not locate api key file: $apikeyfile" -BackgroundColor Yellow
+    Write-Host
+    exit
+}
+
+if ( $apikeyfile -and (Test-Path $apikeyfile ) ) {
+    $apikey = (Get-Content $apikeyfile)
+}
+
+# Set headers
+if ( $apikey ) {
+    $headers = @{ 'Accept' = 'application/json'; 'Authorization' = "Bearer $apikey"}
+} else {
+    $headers = @{ 'Accept' = 'application/json'; 'auth-api' = $waastoken }
+}
 
 if ( $noDownload -and $logType -eq 'all' ) {
     Write-Host "Cannot download log type 'all' - please choose 'waf' or 'access' to download" -ForegroundColor Yellow
@@ -82,10 +115,12 @@ if ( $jsonFilters ) {
 
 if ( $OutputType -eq 'PSObject' ) {
     Write-Host "Invoke RestMethod"
-    $r = Invoke-RestMethod -Uri $waashost/$apiurl/$qstring -Method $method -ContentType $contentType -Headers @{'Accept' = 'application/json'; 'auth-api' = $waastoken }
+#    $r = Invoke-RestMethod -Uri $waashost/$apiurl/$qstring -Method $method -ContentType $contentType -Headers @{'Accept' = 'application/json'; 'auth-api' = $waastoken }
+    $r = Invoke-RestMethod -Uri $waashost/$apiurl/$qstring -Method $method -ContentType $contentType -Headers $headers
 } else {
     Write-Host "Invoke WebRequest"
-    $r = Invoke-WebRequest -Uri $waashost/$apiurl/$qstring -Method $method -ContentType $contentType -Headers @{'Accept' = 'application/json'; 'auth-api' = $waastoken }
+#    $r = Invoke-WebRequest -Uri $waashost/$apiurl/$qstring -Method $method -ContentType $contentType -Headers @{'Accept' = 'application/json'; 'auth-api' = $waastoken }
+    $r = Invoke-WebRequest -Uri $waashost/$apiurl/$qstring -Method $method -ContentType $contentType -Headers $headers
 }
 
 $r
