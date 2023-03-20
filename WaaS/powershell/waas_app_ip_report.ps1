@@ -4,7 +4,7 @@
 # Must launch waas-login.ps1 to populate $waas_token env variable:
 # . ./waas-login.ps1 
 
-$r = .\send-waas-api.ps1 -api '/' -method GET
+$r = .\send-waas-api.ps1 -api 'applications/' -method GET
 if ( $r.results.id -eq '' ) {
     Write-Host "No app ID's were found."
     exit
@@ -16,7 +16,7 @@ foreach ( $appId in $r.results.id ) {
     Write-Host "Reading IP addresses for app: " -NoNewline
     Write-Host $appId -ForegroundColor Blue
     
-    $app_ip_addrs = .\send-waas-api.ps1 -api "$appId/ips_to_allow/" -method GET
+    $app_ip_addrs = .\send-waas-api.ps1 -api "applications/$appId/ips_to_allow/" -method GET
     Write-Host $app_ip_addrs.ranges -ForegroundColor Yellow
     foreach ( $range in $app_ip_addrs.ranges) {
         $my_ip_list[$range] += 1
