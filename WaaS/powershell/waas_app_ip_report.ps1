@@ -3,7 +3,8 @@
 # Launch from same subdirectory as the send-waas-api.ps1 script
 # Must launch waas-login.ps1 to populate $waas_token env variable:
 # . ./waas-login.ps1 
-
+$barracuda_range = '64.113.48.0/20'
+$aws_range = '34.228.125.58/32'
 $r = .\send-waas-api.ps1 -api 'applications/' -method GET
 if ( $r.results.id -eq '' ) {
     Write-Host "No app ID's were found."
@@ -19,7 +20,9 @@ foreach ( $appId in $r.results.id ) {
     $app_ip_addrs = .\send-waas-api.ps1 -api "applications/$appId/ips_to_allow/" -method GET
     Write-Host $app_ip_addrs.ranges -ForegroundColor Yellow
     foreach ( $range in $app_ip_addrs.ranges) {
-        $my_ip_list[$range] += 1
+        if ( $range -ne $barracuda_range -and $range -ne $aws_range ) {
+            $my_ip_list[$range] += 1
+        }
     }
 }
 
