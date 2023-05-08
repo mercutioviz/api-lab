@@ -69,7 +69,7 @@ $my_ip_regions = @{}
 
 foreach ($cidr in $my_ip_list.GetEnumerator()) {
     $ip = $cidr.Name.Substring(0,$cidr.Name.Length-3)
-    $ipinfo = curl ipinfo.io/$ip
+    $ipinfo = curl -s ipinfo.io/$ip
     $ipdata = $ipinfo | ConvertFrom-Json
     $my_ip_regions[$cidr] = $ipdata.region + ', ' + $ipdata.country
 }
