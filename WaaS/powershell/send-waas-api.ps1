@@ -68,17 +68,17 @@ if ( $apikey ) {
 if ( $OutputType -eq 'PSObject' ) {
     Write-Host "Invoke RestMethod"
     if ( $Method -in ('GET', 'DELETE') -or $Body -eq '' ) {
-        $r = Invoke-RestMethod -Uri $waasHost/$baseUrl/$api -Method $Method -ContentType $contentType -Headers $headers
+        $r = Invoke-RestMethod -Uri $waasHost/$baseUrl/$api/ -Method $Method -ContentType $contentType -Headers $headers
     } else {
-        $r = Invoke-RestMethod -Uri $waasHost/$baseUrl/$api -Method $Method -ContentType $contentType -Headers $headers -Body $Body
+        $r = Invoke-RestMethod -Uri $waasHost/$baseUrl/$api/ -Method $Method -ContentType $contentType -Headers $headers -Body $Body
     }
     $r
 } else {
     Write-Host "Invoke WebRequest"
     if ( $Method -in ('GET', 'DELETE') -or $Body -eq '' ) {
-        $r = Invoke-WebRequest -Uri $waasHost/$baseUrl/$api -Method $Method -ContentType $contentType -Headers $headers
+        $r = Invoke-WebRequest -Uri $waasHost/$baseUrl/$api/ -Method $Method -ContentType $contentType -Headers $headers
     } else {
-        $r = Invoke-WebRequest -Uri $waasHost/$baseUrl/$api -Method $Method -ContentType $contentType -Headers $headers -Body $Body
+        $r = Invoke-WebRequest -Uri $waasHost/$baseUrl/$api/ -Method $Method -ContentType $contentType -Headers $headers -Body $Body
     }
     $r.Content
 }
