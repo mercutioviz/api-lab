@@ -30,6 +30,7 @@ if ( $apikeyfile -and (Test-Path $apikeyfile ) ) {
     $apikey = (Get-Content $apikeyfile)
 }
 
+$r = ''
 $barracuda_range = '64.113.48.0/20'
 $aws_range = '34.228.125.58/32'
 
@@ -42,7 +43,14 @@ $azure_map = @{
     'Virginia' = 'US East';
     
 }
-$r = .\send-waas-api.ps1 -api 'applications/' -method GET
+
+if ( $apikey ) {
+    Write-Host "Getting applications list with api key..."
+    $r = .\send-waas-api.ps1 -api 'applications/' -method GET -apikey $apikey
+} else {
+    $r = .\send-waas-api.ps1 -api 'applications/' -method GET
+}
+
 if ( $r.results.id -eq '' ) {
     Write-Host "No app ID's were found."
     exit
@@ -55,7 +63,11 @@ foreach ( $appId in $r.results.id ) {
     Write-Host "Reading IP addresses for app: " -NoNewline
     Write-Host $appId -ForegroundColor Blue
     
-    $app_ip_addrs = .\send-waas-api.ps1 -api "applications/$appId/ips_to_allow/" -method GET
+    if ( $apikey ) {
+        $app_ip_addrs = .\send-waas-api.ps1 -api "applications/$appId/ips_to_allow/" -method GET -apikey $apikey
+    } else {
+        $app_ip_addrs = .\send-waas-api.ps1 -api "applications/$appId/ips_to_allow/" -method GET
+    }
     Write-Host $app_ip_addrs.ranges -ForegroundColor Yellow
     foreach ( $range in $app_ip_addrs.ranges) {
         if ( $range -ne $barracuda_range -and $range -ne $aws_range ) {
@@ -76,8 +88,8 @@ foreach ($cidr in $my_ip_list.GetEnumerator()) {
 
 $prev_color = $Host.UI.RawUI.ForegroundColor
 $Host.UI.RawUI.ForegroundColor = 'Green'
-Write-Host "`n`n------====== Waas App IP Report ======------"
-Write-Host "  IP ranges and corresponding app counts:`n"
+Write-Host "`n`n--------====== Waas App IP Report ======--------"
+Write-Host "    IP ranges and corresponding app counts:`n"
 Write-Host "    IP Range          Region            Count"
 Write-Host "------------------------------------------------"
 #$my_ip_list | Format-Table -HideTableHeaders
